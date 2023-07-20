@@ -1,5 +1,5 @@
 {
-  "name": "facebook-auth",
+  "name": "unimatch",
   "version": "1.0.0",
   "scripts": {
     "start": "expo start --dev-client",
@@ -8,6 +8,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-google-signin/google-signin": "^10.0.1",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "expo": "~48.0.18",
