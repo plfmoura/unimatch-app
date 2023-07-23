@@ -15,19 +15,28 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "googleServicesFile": "./google-services.json",
-      "package": "com.plfmoura.unimatch"
+      "package": "com.plfmoura.unimatch",
+      "config": {
+        "googleSignIn": {
+          "expoClientId": "999021863841-i5srnh60tg789de16npkb4f0sc0olqc4.apps.googleusercontent.com"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "scheme": "unimatch",
+    "extra": {
+      "eas": {
+        "projectId": "09b5beaa-d749-4954-b927-f6fce171b779"
+      }
     }
   }
 }

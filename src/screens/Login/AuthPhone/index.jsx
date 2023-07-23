@@ -9,7 +9,7 @@ export default function AuthPhone() {
 
     const handleAuthPhone = () => {
         console.log('Login com Phone');
-        navigation.navigate('lobby');
+        navigation.navigate('login-autentication');
 
         try{
 

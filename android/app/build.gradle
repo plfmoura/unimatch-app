@@ -113,9 +113,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace 'com.plfmoura.facebookauth'
+    namespace 'com.plfmoura.unimatch'
     defaultConfig {
-        applicationId 'com.plfmoura.facebookauth'
+        applicationId 'com.plfmoura.unimatch'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

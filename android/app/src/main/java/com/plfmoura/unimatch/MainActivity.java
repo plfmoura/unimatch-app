@@ -1,4 +1,4 @@
-package com.plfmoura.facebookauth;
+package com.plfmoura.unimatch;
 
 import android.os.Build;
 import android.os.Bundle;
