@@ -34,11 +34,11 @@ export default function AuthGoogle() {
     if (!user) {
       if(response?.type === 'success'){
         setLoading(false);
-        navigation.navigate('lobby');
+        navigation.navigate('lobby-routes');
         await getUserInfo(response.authentication.accessToken);
       }
     } else {
-      navigation.navigate('lobby');
+      navigation.navigate('lobby-routes');
     }
   }
   

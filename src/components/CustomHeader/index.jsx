@@ -1,9 +1,12 @@
 import React from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Logo from '../../../assets/logo.png'
+import { useNavigation } from '@react-navigation/native'
 
 export default function CustomHeader({ goBack, variant, userImage }) {
+    const navigation = useNavigation();
+
     return (
         <>
             {variant === 'back-header' ?
@@ -18,7 +21,7 @@ export default function CustomHeader({ goBack, variant, userImage }) {
                     <View style={styles.container_user}>
                         <Image source={Logo} style={styles.app_logo} />
                         <TouchableOpacity
-                            onPress={() => console.log("perfil do usuário")}
+                            onPress={() => navigation.navigate("profile")}
                         >
                             <Image source={{ uri: userImage }} style={styles.user_image} />
                         </TouchableOpacity>

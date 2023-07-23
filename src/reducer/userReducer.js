@@ -1,9 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    user: null,
+    user: {
+        id: 1,
+        given_name: "Pedro",
+        picture: 'https://avatars.githubusercontent.com/u/107577096?v=4'
+    },
 };
 
 export const userSlice = createSlice({

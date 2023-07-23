@@ -9,8 +9,7 @@ export default function AuthFacebook() {
 
     const handleAuthFacebook = () => {
         console.log('Login com Facebook');
-        navigation.navigate('lobby');
-
+        navigation.navigate('lobby-routes');
         try{
 
         }catch(error){
