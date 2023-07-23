@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import CustomButton from './../../../components/CustomButton/index';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -26,13 +25,13 @@ export default function AuthGoogle() {
     if (!user) {
       if(response?.type === 'success'){
         await getUserInfo(response.authentication.accessToken);
-        navigation.navigate('lobby');
       }
     } else {
       setUserInfo(JSON.parse(user));
+      navigation.navigate('lobby');
     }
   }
-
+  
   const getUserInfo = async (token) => {
     if (!token) return;
     try {
@@ -42,7 +41,6 @@ export default function AuthGoogle() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-
       const user = await response.json();
       await AsyncStorage.setItem('@user', JSON.stringify(user));
       await AsyncStorage.setItem('@auth-token', JSON.stringify(token));

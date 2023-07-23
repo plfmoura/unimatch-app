@@ -11,7 +11,7 @@ export default function AuthScreen() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <CustomHeader goBack={() => navigation.goBack()} />
+      <CustomHeader variant="back-header" goBack={() => navigation.goBack()} />
       <View style={styles.logo_container}>
         <AppLogo title={true} />
       </View>
