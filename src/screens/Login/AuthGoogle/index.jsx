@@ -1,20 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native'
 import CustomButton from './../../../components/CustomButton/index';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as Google from 'expo-auth-session/providers/google';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LoadingContext } from './../../../contexts/LoadingContext';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../reducer/userReducer';
 
 export default function AuthGoogle() {
-  const [userInfo, setUserInfo] = useState(null);
   const navigation = useNavigation();
+  const { setLoading } = useContext(LoadingContext);
+  const dispatch = useDispatch();
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     expoClientId: "999021863841-i5srnh60tg789de16npkb4f0sc0olqc4.apps.googleusercontent.com",
     androidClientId: "999021863841-3trqgrkslhljc1cgdl8enl2qm3vslgf9.apps.googleusercontent.com",
     webClientId: "999021863841-i5srnh60tg789de16npkb4f0sc0olqc4.apps.googleusercontent.com",
   });
+
+  const handleLogin = () => {
+    promptAsync();
+    setLoading(true);
+  }
 
   useEffect(() => {
     handleSignInWithGoogle();
@@ -24,10 +33,11 @@ export default function AuthGoogle() {
     const user = await AsyncStorage.getItem("@user");
     if (!user) {
       if(response?.type === 'success'){
+        setLoading(false);
+        navigation.navigate('lobby');
         await getUserInfo(response.authentication.accessToken);
       }
     } else {
-      setUserInfo(JSON.parse(user));
       navigation.navigate('lobby');
     }
   }
@@ -44,16 +54,16 @@ export default function AuthGoogle() {
       const user = await response.json();
       await AsyncStorage.setItem('@user', JSON.stringify(user));
       await AsyncStorage.setItem('@auth-token', JSON.stringify(token));
-      setUserInfo(user);
+      dispatch(setUser(user));
     }catch(error){
-
+      console.log(error);
     }
   }
 
   return (
     <View>
       <CustomButton
-        onPress={() => promptAsync()}
+        onPress={() => handleLogin()}
         icon={<Icon name="google" size={30} color="#fff" />}
         bgColor={"#DD4B39"}
         text={"ENTRAR COM GOOGLE"}
