@@ -2,11 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    user: {
-        id: 1,
-        given_name: "Pedro",
-        picture: 'https://avatars.githubusercontent.com/u/107577096?v=4'
-    },
+    user: []
 };
 
 export const userSlice = createSlice({
@@ -19,10 +15,12 @@ export const userSlice = createSlice({
         },
         //Delete the User
         deleteUser: async (state) => {
-            state.user = null;
+            state.user = [];
             //Clean the "localStorage"
             await AsyncStorage.removeItem("@auth-token");
             await AsyncStorage.removeItem("@user");
+            console.log(state.user)
+            console.log('usuário apagado');
         },
     },
 });

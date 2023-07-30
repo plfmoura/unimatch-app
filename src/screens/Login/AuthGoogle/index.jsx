@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useNavigation } from '@react-navigation/native';
+import React, { useContext, useEffect } from 'react'
 import { View } from 'react-native'
 import CustomButton from './../../../components/CustomButton/index';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -10,7 +9,6 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../../../reducer/userReducer';
 
 export default function AuthGoogle() {
-  const navigation = useNavigation();
   const { setLoading } = useContext(LoadingContext);
   const dispatch = useDispatch();
 
@@ -22,7 +20,6 @@ export default function AuthGoogle() {
 
   const handleLogin = () => {
     promptAsync();
-    setLoading(true);
   }
 
   useEffect(() => {
@@ -33,13 +30,9 @@ export default function AuthGoogle() {
     const user = await AsyncStorage.getItem("@user");
     if (!user) {
       if(response?.type === 'success'){
-        setLoading(false);
-        navigation.navigate('lobby-routes');
         await getUserInfo(response.authentication.accessToken);
       }
-    } else {
-      navigation.navigate('lobby-routes');
-    }
+    } 
   }
   
   const getUserInfo = async (token) => {

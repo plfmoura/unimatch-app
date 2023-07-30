@@ -20,7 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#222"
+        "backgroundColor": "transparent"
       },
       "package": "com.plfmoura.unimatch",
       "config": {
@@ -32,7 +32,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "scheme": "unimatch",
+    "scheme": ["unimatch", "fb248010794749633"],
     "extra": {
       "eas": {
         "projectId": "09b5beaa-d749-4954-b927-f6fce171b779"
@@ -40,3 +40,4 @@
     }
   }
 }
+

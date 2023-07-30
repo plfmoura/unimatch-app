@@ -1,14 +1,24 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import AuthGoogle from './AuthGoogle';
 import AuthPhone from './AuthPhone';
 import AuthFacebook from './AuthFacebook';
 import AppLogo from '../../components/AppLogo';
 import { styles } from './styles';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function Login() {
   const navigation = useNavigation();
+  const user = useSelector(state => state.user);
+  
+  useEffect(() => {
+    if(user.user.length > 0){
+      navigation.navigate('lobby-routes', {screen: 'lobby'});
+    }
+    console.log(user);
+  }, [user.user])
 
   return (
     <View style={styles.container}>
@@ -21,7 +31,7 @@ export default function Login() {
       </View>
       <View style={styles.auth_container}>
         <AuthGoogle />
-        <AuthFacebook />
+        {/* <AuthFacebook /> */}
         <AuthPhone />
       </View>
       <Text style={styles.footer_text}>Problemas para iniciar sessão?</Text>

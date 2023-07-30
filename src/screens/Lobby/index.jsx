@@ -19,6 +19,7 @@ export default function Lobby() {
 
   useEffect(() => {
     checkUser();
+    console.log(user)
   }, []);
 
   const handleLogoutSession = async () => {
@@ -30,11 +31,11 @@ export default function Lobby() {
     <View style={styles.container}>
       {user.user &&
         <>
-          <CustomHeader variant="user-header" userImage={user.user.picture} />
+          {/* <CustomHeader variant="user-header" userImage={user.user.picture ? user.user.picture : null} /> */}
           <View style={styles.main_content}>
             <View style={styles.greetings}>
               <Text style={styles.greetings_text}>
-                Poxa {user.user.given_name}, você não tem conexões novas por aqui,
+                Poxa {user.user.given_name ? user.user.given_name : user.user.name}, você não tem conexões novas por aqui,
                 mas isso não é problema né, partiu conectar!
               </Text>
               <CustomButton
